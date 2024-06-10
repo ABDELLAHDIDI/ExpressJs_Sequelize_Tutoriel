@@ -1,11 +1,10 @@
-// import  dotenv from 'dotenv'
-// import {app} from './src/app'
-
-   
-   const app = require('./src/app');
-
  
+   const app = require('./src/app');
+    const {sequelize} = require('./src/models/index')
 
-app.listen(3000,()=>{
-    console.log("started on port 3000 ")
+
+       sequelize.sync({alter : true})
+
+app.listen(process.env.SERVER_PORT || 3000 ,()=>{ 
+    console.log(` started on port ${process.env.SERVER_PORT || 3000 }`)
 })

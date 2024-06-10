@@ -9,18 +9,7 @@
 
 
 
-const express = require('express');
- 
-const testRoute = require('./routers/testRoutes');
- 
-const app = express()
 
-app.use(express.json())
-
-app.use(  testRoute ) // complete router to call testFunction /api/v1/test/testFN
-
-
-module.exports  = app
 
 
 
@@ -383,7 +372,30 @@ module.exports  = app
 //     console.log("started on port 3000 ")
 // })
 
+/* *******************Version 4*********************** */
 
+
+const express = require('express');
+ 
+const testRouter = require('./routers/testRoutes');
+const userRouter = require('./routers/UserRoute');
+const personneRouter = require('./routers/PersonneRoute');
+const userpersonneRouter = require('./routers/UserPersonneRoute');
+const productRouter = require('./routers/ProductRoute');
+const productuserRouter = require('./routers/ProductUserRoute');
+ 
+const app = express()
+
+app.use(express.json())
+
+app.use( '/api/v1/test' ,  testRouter )  
+app.use( '/api/v1/user' ,userRouter )
+app.use( '/api/v1/personne' , personneRouter )
+app.use( '/api/v1/userpersonne' , userpersonneRouter )
+app.use( '/api/v1/product' , productRouter )
+app.use( '/api/v1/productuser' , productuserRouter )
+
+module.exports  = app
 
 
 

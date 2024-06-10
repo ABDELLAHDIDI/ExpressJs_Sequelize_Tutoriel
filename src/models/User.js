@@ -1,15 +1,10 @@
 
 const Sequelize = require('sequelize');
-const zlib = require('zlib');
-const dotenv = require('dotenv');
-dotenv.config()
+const zlib = require('zlib'); 
+const {sequelize} = require('./index');
+const Product = require('./Product');
+const { timeStamp } = require('console');
 
-
-const sequelize = new Sequelize(process.env.MYSQL_DATABASE ,process.env.MYSQL_USER,process.env.MYSQL_PWD,{
-  host:process.env.MYSQL_HOST,
-  port:process.env.MYSQL_PORT,
-  dialect:'mysql'
-});
 
 const {DataTypes , Op} = Sequelize
 
@@ -31,11 +26,16 @@ const User = sequelize.define('user',{
   }
 },
 {
-timestamps: false
-
+timestamps: false,
+paranoid : true 
 }
  
 );
+ 
 
+Product.belongsToMany(User ,{ through : 'userproduct'})
+User.belongsToMany(Product ,{ through : 'userproduct'})
 
-module.exports = User
+ 
+
+module.exports = User  

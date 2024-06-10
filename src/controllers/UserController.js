@@ -1,24 +1,16 @@
-const User = require('../models/User')
-
+const User = require('../models/User') 
 
 const   getUsers =   async   (req,res)=>{
 
      try {
          console.log("getAll ")
-         const users = await User.findAll() ;
-            users.forEach((elmt) =>{ 
-            users.push(elmt.dataValues );
-            console.log( elmt.get());
-    })
-
+         const users = await User.findAll() 
          res.status(200).send(users);
         return  
-    
         } 
         catch(err){
         console.log("Error syncing the table and model  : " , err)
         }
-    
 }
 
  const getUser =    async  (req,res)=>{
@@ -87,6 +79,11 @@ const deleteUser = async (req,res)=>{
                     res.status(200).send("user deleted successfully !! ")
 }
 
+
+
+
+
+
  module.exports = {
-                   createUser,deleteUser,getUser,getUsers,updateUser
+                   createUser,deleteUser,getUser,getUsers,updateUser 
                   };

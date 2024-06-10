@@ -1,21 +1,15 @@
-const express = require('express');
 
-// import { testFunction } from "../controllers/testController"
+const express = require('express'); 
 
-const testFunction = require('../controllers/testController');
-const { createUser,deleteUser,getUser,getUsers,updateUser }= require('../controllers/UserController'); 
+const testFunction = require('../controllers/testController'); 
  
-const router = express.Router()
+const testRouter = express.Router()
 
-router.route('/testFN').get(testFunction)
-
-
-router.route('/users').get(getUsers)
-router.route('/users/:id').get(getUser)
-router.route('/users').post(createUser)
-router.route('/users').put(updateUser)
-router.route('/users/:id').delete(deleteUser)
+testRouter.route('/').get(testFunction)
 
 
-module.exports = router 
+
+
+
+module.exports = testRouter 
 
